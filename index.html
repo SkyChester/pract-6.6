@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поштова форма</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+        }
+        label {
+            font-size: 14px;
+            color: #0000CD;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"], input[type="reset"] {
+            background-color: #0000CD;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 5px;
+        }
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #333;
+        }
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Поштова форма</h1>
+        <form name="mailer" method="post" action="" enctype="text/plain" onsubmit="messageto(); return true;">
+            <table>
+                <tr>
+                    <td><label for="name">Ім'я:</label></td>
+                    <td><input type="text" id="name" name="Name" size="24" onchange="messageto(this.form)"></td>
+                </tr>
+                <tr>
+                    <td><label for="subject">Тема:</label></td>
+                    <td><input type="text" id="subject" name="Subject" size="24" onchange="messageto(this.form)"></td>
+                </tr>
+                <tr>
+                    <td><label for="message">Повідомлення:</label></td>
+                    <td><textarea id="message" name="Message" cols="40" rows="6" onchange="messageto(this.form)"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="center">
+                        <input type="submit" value="Відправити">
+                        <input type="reset" value="Очистити">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        function messageto() { 
+            document.mailer.action = "mailto:dmtkachuk61@gmail.com?Subject=" + encodeURIComponent(document.mailer.Subject.value) + "&Body=" + encodeURIComponent(document.mailer.Message.value);
+        }
+    </script>
+</body>
+</html>
